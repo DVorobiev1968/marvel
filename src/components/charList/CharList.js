@@ -21,20 +21,21 @@ class CharList extends Component {
   }
 
   onRequest = (offset) => {
-    this.onCharListLoaded(0);
+    this.onCharListLoading();
     this.marvelService
       .getAllCharacters(offset)
       .then(this.onCharListLoaded)
       .catch(this.onError);
   };
 
-  onListLoading = () => {
+  onCharListLoading = () => {
     this.setState({
       newItemLoading: true,
     });
   };
 
   onCharListLoaded = (newCharList) => {
+    console.log(newCharList);
     let ended = false;
     if (newCharList.length < 9) {
         ended = true;
