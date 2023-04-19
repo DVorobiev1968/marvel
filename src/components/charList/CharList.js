@@ -21,6 +21,7 @@ class CharList extends Component {
   }
 
   onRequest = (offset) => {
+    console.log('CharList.onRequest');
     this.onCharListLoading();
     this.marvelService
       .getAllCharacters(offset)
