@@ -7,10 +7,9 @@ import ErrorMessage from "../errorMessage/ErrorMessage";
 
 const RandomChar = () => {
   const [char, setChar] = useState(null);
-  const {loading, error, clearError, getAllCharacters, getCharacter} = useMarvelService();
+  const {loading, error, clearError, getCharacter} = useMarvelService();
 
   useEffect(() => {
-    console.log('RandomChar.useEffect:');
     updateChar();
     const timerId = setInterval(updateChar, 60000);
     return () => {
@@ -19,14 +18,12 @@ const RandomChar = () => {
   },[])
 
   const onCharLoaded = (char) => {
-    console.log('RandomChar.onCharLoaded:',char);
     setChar(char);
   };
 
   const updateChar = () => {
     clearError();
     const id = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);
-    console.log("RandomList.updateChar id:", id);
     getCharacter(id).then(onCharLoaded);
   };
 
@@ -58,7 +55,6 @@ const RandomChar = () => {
 
 const View = ({ char }) => {
   if (char!=null){
-    console.log('RandomChar.View',char);
     const { name, description, thumbnail, homepage, wiki } = char;
     let imgStyle = { objectFit: "cover" };
     if (

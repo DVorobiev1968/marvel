@@ -17,13 +17,10 @@ const useMarvelService = () => {
     const response = await request(
       `${_apiBase}characters/${id}?${_apiKey}`
     );
-    console.log('MarverService.getCharacter',response);
-
     return _transformCharacter(response.data.results[0]);
   };
 
   const _transformCharacter = (char) => {
-    console.log('MarverService._transformCharacter',char);
     return {
       id: char.id,
       name: char.name,
